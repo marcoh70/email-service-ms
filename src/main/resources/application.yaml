@@ -1,0 +1,19 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: email-service-ms
+  kafka:
+    consumer:
+      bootstrap-server:
+        - localhost:9092
+        - localhost:9094
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: product-created-events
+      properties:
+        spring.json.trusted.packages: "com.app.ed.core.model"
+
+topics:
+  consumer:
+    products: product-created-events-topic
